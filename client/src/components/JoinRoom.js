@@ -16,6 +16,7 @@ const JoinRoom = ({
   return (
     <div>
       <input
+        className="username"
         type="text"
         placeholder="username"
         onChange={(event) => {
@@ -23,13 +24,14 @@ const JoinRoom = ({
         }}
       />
       <input
+        className="room"
         type="text"
         placeholder="room number"
         onChange={(event) => {
           setRoom(event.target.value);
         }}
       />
-      <button type="submit" onClick={joinRooms}>
+      <button className="room-button" type="submit" onClick={joinRooms}>
         Join Room
       </button>
     </div>

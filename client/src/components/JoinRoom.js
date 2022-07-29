@@ -1,3 +1,5 @@
+import logo from "../assets/logo.png";
+
 const JoinRoom = ({
   socket,
   username,
@@ -15,7 +17,13 @@ const JoinRoom = ({
 
   return (
     <div className="joinChatContainer">
-      <h1>Smack Chat</h1>
+      <div>
+        <img
+          src={logo}
+          style={{ textAlign: "center", height: "300px", width: "300px" }}
+          alt="Smack Chat Logo"
+        />
+      </div>
       <div>
         <input
           type="text"

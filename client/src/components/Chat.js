@@ -69,7 +69,7 @@ const Chat = ({ socket, username, room }) => {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
-        <button type="submit">Send</button>
+        <button>&#9658;</button>
       </form>
     </div>
   );

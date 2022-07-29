@@ -14,26 +14,31 @@ const JoinRoom = ({
   };
 
   return (
-    <div>
-      <input
-        className="username"
-        type="text"
-        placeholder="username"
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-      />
-      <input
-        className="room"
-        type="text"
-        placeholder="room number"
-        onChange={(event) => {
-          setRoom(event.target.value);
-        }}
-      />
-      <button className="room-button" type="submit" onClick={joinRooms}>
-        Join Room
-      </button>
+    <div className="joinChatContainer">
+      <h1>Smack Chat</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="username"
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="room number"
+          onChange={(event) => {
+            setRoom(event.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <button type="submit" onClick={joinRooms}>
+          Join Room
+        </button>
+      </div>
     </div>
   );
 };

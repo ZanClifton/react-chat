@@ -5,7 +5,7 @@ const server = http.Server(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     methods: ["GET, POST"],
   },
 });
@@ -14,9 +14,9 @@ const cors = require("cors");
 app.use(cors());
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
+  console.log(`connection: ${socket.id}`);
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    console.log(`disconnection: ${socket.id}`);
   });
 });
 

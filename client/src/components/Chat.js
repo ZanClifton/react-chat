@@ -4,7 +4,8 @@ const Chat = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const sendMessage = async () => {
+  const sendMessage = async (event) => {
+    event.preventDefault();
     if (message !== "") {
       const messageData = {
         room: room,
@@ -42,17 +43,19 @@ const Chat = ({ socket, username, room }) => {
           </li>
         ))}
       </ul>
-      {/* <form onSubmit={sendMessage}> */}
-      <input
-        type="text"
-        placeholder="Enter a message"
-        value={message}
-        onChange={(event) => setMessage(event.target.value)}
-      />
-      <button type="submit" onClick={sendMessage}>
-        Send
-      </button>
-      {/* </form> */}
+      <form
+        onSubmit={(event) => {
+          sendMessage(event);
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Enter a message"
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+        />
+        <button type="submit">Send</button>
+      </form>
     </div>
   );
 };

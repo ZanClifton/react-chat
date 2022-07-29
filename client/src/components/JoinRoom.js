@@ -1,7 +1,15 @@
-const JoinRoom = ({ socket, username, setUsername, room, setRoom }) => {
+const JoinRoom = ({
+  socket,
+  username,
+  setUsername,
+  room,
+  setRoom,
+  setShowChat,
+}) => {
   const joinRooms = () => {
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
+      setShowChat(true);
     }
   };
 

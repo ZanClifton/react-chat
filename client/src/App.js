@@ -8,6 +8,7 @@ const socket = io.connect("http://localhost:3001");
 function App() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
+  const [showChat, setShowChat] = useState(false);
 
   return (
     <div className="App">
@@ -21,8 +22,11 @@ function App() {
           setUsername={setUsername}
           room={room}
           setRoom={setRoom}
+          setShowChat={setShowChat}
         />
-        <Chat socket={socket} username={username} room={room} />
+        {showChat ? (
+          <Chat socket={socket} username={username} room={room} />
+        ) : null}
       </div>
     </div>
   );

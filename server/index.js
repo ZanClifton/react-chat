@@ -15,6 +15,10 @@ app.use(cors());
 
 io.on("connection", (socket) => {
   console.log(`connection: ${socket.id}`);
+  socket.on("join_room", (room) => {
+    console.log(`join_room: ${room}`);
+    socket.join(room);
+  });
   socket.on("disconnect", () => {
     console.log(`disconnection: ${socket.id}`);
   });

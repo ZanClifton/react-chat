@@ -19,26 +19,16 @@ io.on("connection", (socket) => {
     console.log(`join_room: ${room}`);
     socket.join(room);
   });
+
+  socket.on("send_message", (message) => {
+    console.log(`send_message: ${message.text}`);
+    socket.to(message.room).emit("receive_message", message);
+  });
+
   socket.on("disconnect", () => {
     console.log(`disconnection: ${socket.id}`);
   });
 });
-
-// io.on("connection", (socket) => {
-//   socket.on("chat message", (msg) => {
-//     console.log("message: " + msg);
-//   });
-// });
-
-// io.on("connection", (socket) => {
-//   socket.emit("hi");
-// });
-
-// io.on("connection", (socket) => {
-//   socket.on("chat message", (msg) => {
-//     io.emit("chat message", msg);
-//   });
-// });
 
 server.listen(3001, () => {
   console.log("listening on *:3001");

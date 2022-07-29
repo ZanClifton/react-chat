@@ -1,6 +1,5 @@
-const JoinRoom = ({ socket, setUsername, setRoom }) => {
-  const joinRooms = (event) => {
-    event.preventDefault();
+const JoinRoom = ({ socket, username, setUsername, room, setRoom }) => {
+  const joinRooms = () => {
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
     }
@@ -11,31 +10,23 @@ const JoinRoom = ({ socket, setUsername, setRoom }) => {
 
   return (
     <div>
-      <h1>Chat</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="username"
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="room number"
-          onChange={(event) => {
-            setRoom(event.target.value);
-          }}
-        />
-        <button
-          type="submit"
-          onClick={(event) => {
-            joinRooms(event);
-          }}
-        >
-          Join Room
-        </button>
-      </form>
+      <input
+        type="text"
+        placeholder="username"
+        onChange={(event) => {
+          setUsername(event.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder="room number"
+        onChange={(event) => {
+          setRoom(event.target.value);
+        }}
+      />
+      <button type="submit" onClick={joinRooms}>
+        Join Room
+      </button>
     </div>
   );
 };

@@ -13,9 +13,6 @@ const JoinRoom = ({
     }
   };
 
-  console.log(username);
-  console.log(room);
-
   return (
     <div>
       <input

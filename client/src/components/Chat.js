@@ -29,8 +29,6 @@ const Chat = ({ socket, username, room }) => {
     });
   }, [socket]);
 
-  console.log(messages);
-
   return (
     <div className="chat">
       <h2>Room: {room}</h2>

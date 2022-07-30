@@ -1,3 +1,5 @@
+import logo from "../assets/logo.png";
+
 const JoinRoom = ({
   socket,
   username,
@@ -13,28 +15,38 @@ const JoinRoom = ({
     }
   };
 
-  console.log(username);
-  console.log(room);
-
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="username"
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="room number"
-        onChange={(event) => {
-          setRoom(event.target.value);
-        }}
-      />
-      <button type="submit" onClick={joinRooms}>
-        Join Room
-      </button>
+    <div className="joinChatContainer">
+      <div>
+        <img
+          src={logo}
+          style={{ textAlign: "center", height: "300px", width: "300px" }}
+          alt="Smack Chat Logo"
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="username"
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="room number"
+          onChange={(event) => {
+            setRoom(event.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <button type="submit" onClick={joinRooms}>
+          Join Room
+        </button>
+      </div>
     </div>
   );
 };

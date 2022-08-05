@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import io from "socket.io-client";
 import Chat from "./components/Chat";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import JoinRoom from "./components/JoinRoom";
 const socket = io.connect("http://localhost:3001");
@@ -38,6 +40,7 @@ function App() {
             }
           />
         </Routes>
+        <ToastContainer closeOnClick pauseOnHover />
       </div>
     </div>
   );

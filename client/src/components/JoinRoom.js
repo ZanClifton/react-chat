@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const JoinRoom = ({
   socket,
@@ -43,9 +44,11 @@ const JoinRoom = ({
         />
       </div>
       <div>
-        <button type="submit" onClick={joinRooms}>
-          Join Room
-        </button>
+        <Link to={`/chat?username=${username}&room=${room}`}>
+          <button type="submit" onClick={joinRooms}>
+            Join Room
+          </button>
+        </Link>
       </div>
     </div>
   );

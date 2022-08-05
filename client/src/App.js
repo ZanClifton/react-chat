@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import io from "socket.io-client";
 import Chat from "./components/Chat";
@@ -14,17 +15,29 @@ function App() {
   return (
     <div className="App">
       <div className="App-body">
-        <JoinRoom
-          socket={socket}
-          username={username}
-          setUsername={setUsername}
-          room={room}
-          setRoom={setRoom}
-          setShowChat={setShowChat}
-        />
-        {showChat ? (
-          <Chat socket={socket} username={username} room={room} />
-        ) : null}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <JoinRoom
+                socket={socket}
+                username={username}
+                setUsername={setUsername}
+                room={room}
+                setRoom={setRoom}
+                setShowChat={setShowChat}
+              />
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              showChat ? (
+                <Chat socket={socket} username={username} room={room} />
+              ) : null
+            }
+          />
+        </Routes>
       </div>
     </div>
   );

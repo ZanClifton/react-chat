@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import Header from "./Header"
 
 const Chat = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
@@ -30,7 +31,10 @@ const Chat = ({ socket, username, room }) => {
     });
   }, [socket]);
 
-  return (
+  return (<>
+  <div style={{textAlign: "center", }}>
+      <Header />
+      </div>
     <div className="chat-window">
       <div className="chat-header">
         <h2>Room: {room}</h2>
@@ -72,6 +76,7 @@ const Chat = ({ socket, username, room }) => {
         <button>&#9658;</button>
       </form>
     </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png";
+import Header from "./Header"
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -22,18 +22,7 @@ const JoinRoom = ({
   return (
     <div className="joinChatContainer">
       <div>
-        <img
-          src={logo}
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          pauseOnHover
-        />
+        <Header />
         <div>
           <input
             type="text"

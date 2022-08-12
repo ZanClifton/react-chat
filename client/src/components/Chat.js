@@ -38,12 +38,18 @@ const Chat = ({ socket, username, room }) => {
         <Header />
       </div>
       <Link to={`/`}>
-        <button>Back</button>
+        <button
+          onClick={() => {
+            socket.emit("leave_room", room);
+          }}
+        >
+          Leave {room} Room
+        </button>
       </Link>
       <div className="chat-window">
         <div className="chat-header">
           <div>
-            <h2>Room: {room}</h2>
+            <h2>{room}</h2>
           </div>
         </div>
         <div className="chat-body">

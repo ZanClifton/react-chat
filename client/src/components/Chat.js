@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-import Header from "./Header"
+import Header from "./Header";
+import { Link } from "react-router-dom";
 
 const Chat = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
@@ -31,51 +32,57 @@ const Chat = ({ socket, username, room }) => {
     });
   }, [socket]);
 
-  return (<>
-  <div style={{textAlign: "center", }}>
-      <Header />
+  return (
+    <>
+      <div style={{ textAlign: "center" }}>
+        <Header />
       </div>
-    <div className="chat-window">
-      <div className="chat-header">
-        <h2>Room: {room}</h2>
-      </div>
-      <div className="chat-body">
-        <ScrollToBottom className="message-container">
-          <ul>
-            {messages.map((message, index) => (
-              <div
-                className="message"
-                id={username === message.author ? "you" : "other"}
-              >
-                <li key={index}>
-                  <div className="message-content">{message.text}</div>
-                  <div className="message-meta">
-                    <p id="time">{message.time}</p>
-                    <p id="author">{message.author}</p>
-                  </div>
-                </li>
-              </div>
-            ))}
-          </ul>
-        </ScrollToBottom>
-      </div>
+      <Link to={`/`}>
+        <button>Back</button>
+      </Link>
+      <div className="chat-window">
+        <div className="chat-header">
+          <div>
+            <h2>Room: {room}</h2>
+          </div>
+        </div>
+        <div className="chat-body">
+          <ScrollToBottom className="message-container">
+            <ul>
+              {messages.map((message, index) => (
+                <div
+                  className="message"
+                  id={username === message.author ? "you" : "other"}
+                >
+                  <li key={index}>
+                    <div className="message-content">{message.text}</div>
+                    <div className="message-meta">
+                      <p id="time">{message.time}</p>
+                      <p id="author">{message.author}</p>
+                    </div>
+                  </li>
+                </div>
+              ))}
+            </ul>
+          </ScrollToBottom>
+        </div>
 
-      <form
-        onSubmit={(event) => {
-          sendMessage(event);
-        }}
-        className="chat-footer"
-      >
-        <textarea
-          className="chat-input"
-          type="text"
-          placeholder="Enter a message"
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-        />
-        <button>&#9658;</button>
-      </form>
-    </div>
+        <form
+          onSubmit={(event) => {
+            sendMessage(event);
+          }}
+          className="chat-footer"
+        >
+          <textarea
+            className="chat-input"
+            type="text"
+            placeholder="Enter a message"
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
+          />
+          <button>&#9658;</button>
+        </form>
+      </div>
     </>
   );
 };

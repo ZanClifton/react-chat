@@ -1,4 +1,4 @@
-import Header from "./Header"
+import Header from "./Header";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -15,7 +15,7 @@ const JoinRoom = ({
       socket.emit("join_room", room);
       setShowChat(true);
     } else {
-      toast.error("You must enter a username and room number");
+      toast.error("You must enter a username and select a room");
     }
   };
 
@@ -26,7 +26,7 @@ const JoinRoom = ({
         <div>
           <input
             type="text"
-            placeholder="username"
+            placeholder="Username"
             onChange={(event) => {
               setUsername(event.target.value);
             }}
@@ -34,13 +34,25 @@ const JoinRoom = ({
         </div>
       </div>
       <div>
-        <input
-          type="text"
-          placeholder="room number"
+        <select
+          className="roomSelect"
           onChange={(event) => {
             setRoom(event.target.value);
           }}
-        />
+        >
+          <option selected disabled value="">
+            Select a room
+          </option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="React">React</option>
+          <option value="SQL">SQL</option>
+          <option value="C#">C#</option>
+          <option value="Tailwind">Tailwind</option>
+          <option value="Drupal">Drupal</option>
+          <option value="Strapi">Strapi</option>
+          <option value="Django">Django</option>
+        </select>
       </div>
       <div>
         <Link

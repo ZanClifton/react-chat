@@ -23,6 +23,11 @@ io.on("connection", (socket) => {
     socket.join(room);
   });
 
+  socket.on("leave_room", (room) => {
+    console.log(`leave_room: ${room}`);
+    socket.leave(room);
+  });
+
   socket.on("send_message", (message) => {
     console.log(`send_message: ${message.text}`);
     socket.to(message.room).emit("receive_message", message);

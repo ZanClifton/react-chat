@@ -1,6 +1,7 @@
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import SelectRoom from "./SelectRoom";
 
 const JoinRoom = ({
   socket,
@@ -34,25 +35,7 @@ const JoinRoom = ({
         </div>
       </div>
       <div>
-        <select
-          className="roomSelect"
-          onChange={(event) => {
-            setRoom(event.target.value);
-          }}
-        >
-          <option selected disabled value="">
-            Select a room
-          </option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="Python">Python</option>
-          <option value="React">React</option>
-          <option value="SQL">SQL</option>
-          <option value="C#">C#</option>
-          <option value="Tailwind">Tailwind</option>
-          <option value="Drupal">Drupal</option>
-          <option value="Strapi">Strapi</option>
-          <option value="Django">Django</option>
-        </select>
+        <SelectRoom setRoom={setRoom} />
       </div>
       <div>
         <Link

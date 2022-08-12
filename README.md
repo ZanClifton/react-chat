@@ -33,6 +33,8 @@ $ npm install
 $ npm start
 ```
 
+<img src="https://github.com/smack-apps/smack-chat/blob/main/client/src/assets/chat-screenshot.png" width=250px align=right alt="Smack Chat"/>
+
 Once the dependencies are installed and the server is running, navigate to the other folder and run the same commands:
 ```
 $ cd ../client
@@ -44,5 +46,9 @@ Your default browser will open to the chat page.
 
 ### ✔️ 3. USAGE
 ![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white) ![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white) ![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white) ![Edge](https://img.shields.io/badge/Edge-0078D7?style=for-the-badge&logo=Microsoft-edge&logoColor=white) ![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=Safari&logoColor=white)
+
+
+
+
 
 You can open additional browser tabs or windows to the same chat page and send messages between them. Each instance creates its own connection to the server. This connection is ended if you refresh the page or navigate elsewhere. 

@@ -10,7 +10,7 @@ This project uses `socket.io` with `React` to create a chat application. You can
 
 ### How We Work
 
-When preparing to undertake a project, Diana researches the technologies involved and produces helpful documentation to enable both her and Zan to understand the full technological picture. Typically, Zan acts as the driver for any pair-programming, while Diana navigates. Approving pull requests is done together after they have discussed the results of each change a particular merge will bring.
+When preparing to undertake a project, Diana researches the technologies involved and produces helpful documentation to enable both her and Zan to understand the full technological picture. They meet most mornings for an hour to work together. Typically, Zan acts as the driver for any pair-programming, while Diana navigates. Approving pull requests is done together after they have discussed the results of each change a particular merge will bring.
 
 ### ✔️ 1. CLONE THE REPO
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)

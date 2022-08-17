@@ -1,3 +1,25 @@
+// const { MongoClient, ServerApiVersion } = require("mongodb");
+// const uri = "mongodb+srv://admin:<password>@smackchatcluster.nocqqel.mongodb.net/?retryWrites=true&w=majority
+
+const user = process.env.USER_URI;
+const pass = process.env.PASSWORD_URI;
+const mongoDB = `mongodb+srv://${user}:${pass}@smackchatcluster.nocqqel.mongodb.net/?retryWrites=true&w=majority`;
+
+require("dotenv").config();
+
+const mongoose = require("mongoose");
+// const Msg = require("./models/messages");
+// const io = require('socket.io')(3000)
+
+mongoose
+  .connect(mongoDB)
+  .then(() => {
+    console.log("connected to mongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 const express = require("express");
 const app = express();
 const http = require("http");

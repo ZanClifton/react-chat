@@ -37,6 +37,16 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  Msg.find().then((result) => {
+    socket.emit(
+      "output-messages",
+      result.map((message) => {
+        const parsedMessage = JSON.parse(message.msg);
+        console.log(parsedMessage);
+        return parsedMessage;
+      })
+    );
+  });
   console.log(`connection: ${socket.id}`);
   socket.on("join_room", (room) => {
     console.log(`join_room: ${room}`);

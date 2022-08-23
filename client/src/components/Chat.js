@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 const Chat = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [messageHistory, setMessageHistory] = useState([]);
+  console.log("messageHistory", messageHistory, "this is the end");
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -25,6 +27,18 @@ const Chat = ({ socket, username, room }) => {
       setMessage("");
     }
   };
+
+  useEffect(() => {
+    socket.on("output-messages", (data) => {
+      console.log(data);
+      if (data.length) {
+        data.forEach((message) => {
+          setMessageHistory((list) => [...list, message]);
+          console.log("message received");
+        });
+      }
+    });
+  }, [socket]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

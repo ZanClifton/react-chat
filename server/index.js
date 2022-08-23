@@ -1,5 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+const Msg = require("./models/messages");
 
 const user = process.env.USER_URI;
 const pass = process.env.PASSWORD_URI;
@@ -48,8 +49,12 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send_message", (message) => {
-    console.log(`send_message: ${message.text}`);
-    socket.to(message.room).emit("receive_message", message);
+    const stringifiedMessage = JSON.stringify(message);
+    const sent_message = new Msg({ msg: stringifiedMessage });
+    sent_message.save().then(() => {
+      console.log(`send_message: ${message.text}`);
+      socket.to(message.room).emit("receive_message", message);
+    });
   });
 
   socket.on("disconnect", () => {

@@ -68,21 +68,24 @@ const Chat = ({ socket, username, room }) => {
         <div className="chat-body">
           <ScrollToBottom className="message-container">
             <ul>
-              {messageHistory.map((message, index) => (
-                <div
-                  key={index}
-                  className="message"
-                  id={username === message.author ? "you" : "other"}
-                >
-                  <li>
-                    <div className="message-content">{message.text}</div>
-                    <div className="message-meta">
-                      <p id="time">{message.time}</p>
-                      <p id="author">{message.author}</p>
+              {messageHistory.map(
+                (message, index) =>
+                  message.room === room && (
+                    <div
+                      key={index}
+                      className="message"
+                      id={username === message.author ? "you" : "other"}
+                    >
+                      <li>
+                        <div className="message-content">{message.text}</div>
+                        <div className="message-meta">
+                          <p id="time">{message.time}</p>
+                          <p id="author">{message.author}</p>
+                        </div>
+                      </li>
                     </div>
-                  </li>
-                </div>
-              ))}
+                  )
+              )}
             </ul>
           </ScrollToBottom>
         </div>

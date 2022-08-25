@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 
 const Chat = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
   const [messageHistory, setMessageHistory] = useState([]);
-  console.log("messageHistory", messageHistory, "this is the end");
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -25,14 +23,13 @@ const Chat = ({ socket, username, room }) => {
       };
 
       await socket.emit("send_message", messageData);
-      setMessages((list) => [...list, messageData]);
+      setMessageHistory((list) => [...list, messageData]);
       setMessage("");
     }
   };
 
   useEffect(() => {
     socket.on("output-messages", (data) => {
-      console.log(data);
       if (data.length) {
         data.forEach((message) => {
           setMessageHistory((list) => [...list, message]);
@@ -40,11 +37,11 @@ const Chat = ({ socket, username, room }) => {
         });
       }
     });
-  }, [socket]);
+  }, [room]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessages((messages) => [...messages, data]);
+      setMessageHistory((messageHistory) => [...messageHistory, data]);
     });
   }, [socket]);
 
@@ -71,12 +68,13 @@ const Chat = ({ socket, username, room }) => {
         <div className="chat-body">
           <ScrollToBottom className="message-container">
             <ul>
-              {messages.map((message, index) => (
+              {messageHistory.map((message, index) => (
                 <div
+                  key={index}
                   className="message"
                   id={username === message.author ? "you" : "other"}
                 >
-                  <li key={index}>
+                  <li>
                     <div className="message-content">{message.text}</div>
                     <div className="message-meta">
                       <p id="time">{message.time}</p>

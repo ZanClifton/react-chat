@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Chat = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messageHistory, setMessageHistory] = useState([]);
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -17,18 +17,31 @@ const Chat = ({ socket, username, room }) => {
         time:
           new Date(Date.now()).getHours() +
           ":" +
-          new Date(Date.now()).getMinutes(),
+          (new Date(Date.now()).getMinutes() < 10
+            ? "0"
+            : "" + new Date(Date.now()).getMinutes()),
       };
 
       await socket.emit("send_message", messageData);
-      setMessages((list) => [...list, messageData]);
+      setMessageHistory((list) => [...list, messageData]);
       setMessage("");
     }
   };
 
   useEffect(() => {
+    socket.on("output-messages", (data) => {
+      if (data.length) {
+        data.forEach((message) => {
+          setMessageHistory((list) => [...list, message]);
+          console.log("message received");
+        });
+      }
+    });
+  }, [room]);
+
+  useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessages((messages) => [...messages, data]);
+      setMessageHistory((messageHistory) => [...messageHistory, data]);
     });
   }, [socket]);
 
@@ -55,20 +68,24 @@ const Chat = ({ socket, username, room }) => {
         <div className="chat-body">
           <ScrollToBottom className="message-container">
             <ul>
-              {messages.map((message, index) => (
-                <div
-                  className="message"
-                  id={username === message.author ? "you" : "other"}
-                >
-                  <li key={index}>
-                    <div className="message-content">{message.text}</div>
-                    <div className="message-meta">
-                      <p id="time">{message.time}</p>
-                      <p id="author">{message.author}</p>
+              {messageHistory.map(
+                (message, index) =>
+                  message.room === room && (
+                    <div
+                      key={index}
+                      className="message"
+                      id={username === message.author ? "you" : "other"}
+                    >
+                      <li>
+                        <div className="message-content">{message.text}</div>
+                        <div className="message-meta">
+                          <p id="time">{message.time}</p>
+                          <p id="author">{message.author}</p>
+                        </div>
+                      </li>
                     </div>
-                  </li>
-                </div>
-              ))}
+                  )
+              )}
             </ul>
           </ScrollToBottom>
         </div>
